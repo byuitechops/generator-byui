@@ -33,7 +33,14 @@ module.exports = function () {
     suffix: ':',
     validate: questionTools.noBlank,
     //Only ask this question when we are talking about a new project (the --new flag exists)
-    when: (this.options.new)
+    when: (this.options.new === true),
+    transformer: (input) => { 
+        return (input.replace(/[^a-z-]/g, ''));
+    },
+    filter: (input) => { 
+      return (input.replace(/[^a-z-]/g, ''));
+    }
+
   };
 
   helperQuestions = [
