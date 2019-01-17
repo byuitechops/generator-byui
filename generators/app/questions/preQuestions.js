@@ -34,9 +34,13 @@ module.exports = function () {
     validate: questionTools.noBlank,
     //Only ask this question when we are talking about a new project (the --new flag exists)
     when: (this.options.new === true),
+    
+    //These functions make it so that the folder name will be a legal repository name (no spaces or CAPS)
+    //We need the transformer, so that the screen is changed for the user (no spaces or CAPS come through)
     transformer: (input) => { 
         return (input.replace(/[^a-z-]/g, ''));
     },
+    //We need the filter method, so that the actual answer that is submitted is changed (the value is changed in the answer hash)
     filter: (input) => { 
       return (input.replace(/[^a-z-]/g, ''));
     }
