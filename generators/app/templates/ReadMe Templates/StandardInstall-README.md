@@ -45,6 +45,6 @@ From within the folder where the project resides, run the following:
 ```bash
 npm test
 ```
-<sub>This document created: <%= timeCreated %> using document generator version: <%= generatorVersion %><sub>
+<sub>This document modified: <%= timeCreated %> using document generator version: <%= generatorVersion %><sub>
 
 <!--- TODO: Review the readme for accuracy, then delete this comment--->

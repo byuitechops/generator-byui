@@ -3,11 +3,7 @@
   "version": "1.0.0",
   "description": "This generator will help us create documents for projects",
   "homepage": "https://github.com/byuitechops/generator-byui-tech-ops#readme",
-  "author": {
-    "name": "Ryan Gewondjan",
-    "email": "",
-    "url": ""
-  },
+  "author": "Ryan Gewondjan",
   "files": [
     "generators"
   ],
@@ -77,5 +73,13 @@
   "bugs": {
     "url": "https://github.com/byuitechops/generator-byui-tech-ops/issues"
   },
-  "license": "ISC"
+  "license": "ISC",
+  "byui": {
+    "documentGeneratorVersion": "1.0.0",
+    "projectPurpose": "This project came to pass in an effort to become more organized and efficient.",
+    "projectStakeholders": "byui-tech-ops team (internal tool)",
+    "projectRequirements": "1. This tool needs to be able to handle the creation of documents for a new project\r\n2. This tool needs to be able to handle the editing of documents for an existing project",
+    "projectSize": "medium",
+    "timeDocumentationCreated": "2019 January 17, 01:22 PM"
+  }
 }

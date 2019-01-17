@@ -16,4 +16,4 @@
 ## Requirements
 <%= requirements %>
 
-<sub>This document created: <%= timeCreated %> using document generator version: <%= generatorVersion %><sub>
+<sub>This document modified: <%= timeCreated %> using document generator version: <%= generatorVersion %><sub>

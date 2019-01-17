@@ -12,6 +12,6 @@ module.exports = function () {
     projectStakeholders: this.answers.stakeholders,
     projectRequirements: this.answers.requirements,
     projectSize: this.answers.size,
-    timeCreated: this.answers.timeCreated
+    timeDocumentationCreated: this.answers.timeCreated
   });
 }
