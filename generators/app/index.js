@@ -63,6 +63,9 @@ module.exports = class ByuiTechOpsGenerator extends Generator {
       process.exit(0);
     }
 
+    //Set the default license to be "MIT"
+    proc.execSync(`npm config set init-license "MIT"`);
+
     try {
       var code = 1;
       do {
@@ -120,6 +123,14 @@ module.exports = class ByuiTechOpsGenerator extends Generator {
 
     //Write the package.json
     this.fs.writeJSON('package.json', this.packageJson);
+
+    //Write the LICENSE
+    this.fs.copyTpl(
+      this.templatePath('MIT_LICENSE'),
+      this.destinationPath('LICENSE'),
+      {}
+    );
+
 
     //Write PROJECTINFO.md
     if (this.projectInfo === "" || this.answers.appendProjectInfo === true) {
