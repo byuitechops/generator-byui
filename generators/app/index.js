@@ -128,7 +128,7 @@ module.exports = class ByuiTechOpsGenerator extends Generator {
     this.fs.copyTpl(
       this.templatePath('MIT_LICENSE'),
       this.destinationPath('LICENSE'),
-      {}
+      this.answers
     );
 
 

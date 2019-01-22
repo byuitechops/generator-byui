@@ -1,4 +1,30 @@
 const proc = require('child_process');
+
+const https = require('https');
+
+var options = {
+    headers: {
+        'User-Agent': 'generator-byui-tech-ops'
+    }
+}
+myObject = "";
+https.get('https://api.github.com/repos/byuitechops/generator-byui-tech-ops', options, (res) => {
+
+  res.on('data', (d) => {
+    myObject += d;
+  });
+
+  res.on('close', () => { 
+          
+    console.log(JSON.parse(myObject).created_at);
+});
+
+}).on('error', (e) => {
+  console.error(e);
+});
+
+console.log(JSON.parse(myObject).created_at);
+
 // const test = require('inquirer')
 
 
