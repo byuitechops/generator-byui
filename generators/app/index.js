@@ -2,6 +2,7 @@
 const Generator = require('yeoman-generator');
 const proc = require('child_process');
 const chalk = require('chalk');
+const https = require('https');
 
 module.exports = class ByuiTechOpsGenerator extends Generator {
   constructor(args, opts) {
@@ -124,14 +125,6 @@ module.exports = class ByuiTechOpsGenerator extends Generator {
     //Write the package.json
     this.fs.writeJSON('package.json', this.packageJson);
 
-    //Write the LICENSE
-    this.fs.copyTpl(
-      this.templatePath('MIT_LICENSE'),
-      this.destinationPath('LICENSE'),
-      this.answers
-    );
-
-
     //Write PROJECTINFO.md
     if (this.projectInfo === "" || this.answers.appendProjectInfo === true) {
       this.fs.copyTpl(
@@ -184,6 +177,37 @@ module.exports = class ByuiTechOpsGenerator extends Generator {
 
     }
 
+    var myObject = "";
+    var that = this;
+    return new Promise(function (resolve, reject) {
+      var options = {
+        headers: {
+          'User-Agent': 'generator-byui-tech-ops'
+        }
+      }
+      https.get('https://api.github.com/repos/byuitechops/generator-byui-tech-ops', options, (res) => {
+        res.on('data', (d) => {
+          myObject += d;
+        });
+        res.on('end', () => {
+          var year = JSON.parse(myObject).created_at.substring(0, 4);
+          //Write the LICENSE
+          that.fs.copyTpl(
+            that.templatePath('MIT_LICENSE'),
+            that.destinationPath('LICENSE'),
+            {
+              yearGitHubRepoCreated: year,
+            }
+          );
+          resolve(year);
+        });
+
+      }).on('error', (e) => {
+        reject(e);
+      });
+
+    });
+
   }
 
   conflicts() {
@@ -219,7 +243,7 @@ module.exports = class ByuiTechOpsGenerator extends Generator {
       //Keep displaying the todo list until the user answers that the todo list was complete
       do {
 
-        (this.postQuestionResponses && this.postQuestionResponses.todoListComplete !== true) ? this.log(chalk.bgRed("\nYou Must Complete the Todo List before proceeding!\n")): null;
+        (this.postQuestionResponses && this.postQuestionResponses.todoListComplete !== true) ? this.log(chalk.bgRed("\nYou Must Complete the Todo List before proceeding!\n")) : null;
         await this.prompt(this._postQuestions())
           .then(postQuestionResponses => {
             this.postQuestionResponses = postQuestionResponses;

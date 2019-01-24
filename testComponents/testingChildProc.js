@@ -14,18 +14,23 @@ https.get('https://api.github.com/repos/byuitechops/generator-byui-tech-ops', op
     myObject += d;
   });
 
-  res.on('close', () => { 
-          
-    console.log(JSON.parse(myObject).created_at);
+  res.on('end', () => { 
+    var year = JSON.parse(myObject).created_at.substring(0, 4);
+        //Write the LICENSE
+        this.fs.copyTpl(
+            this.templatePath('MIT_LICENSE'),
+            this.destinationPath('LICENSE'),
+            {
+                yearGitHubRepoCreated: year,
+            }
+          );
 });
 
 }).on('error', (e) => {
   console.error(e);
 });
 
-console.log(JSON.parse(myObject).created_at);
 
-// const test = require('inquirer')
 
 
 // process.env.VISUAL = "C:/Users/jedimasterryan/AppData/Local/Programs/Microsoft\ VS\ Code/Code.exe";
