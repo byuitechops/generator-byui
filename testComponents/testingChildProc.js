@@ -1,6 +1,5 @@
 const proc = require('child_process');
 
-const https = require('https');
 
 var options = {
     headers: {
