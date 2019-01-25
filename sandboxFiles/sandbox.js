@@ -1,9 +1,10 @@
+console.log((new Date()).getFullYear());
+
+
 //Tried some other stuff:
 // process.env.VISUAL = "C:/Users/jedimasterryan/AppData/Local/Programs/Microsoft\ VS\ Code/Code.exe";
 
 // console.log(`Editor is ${process.env.VISUAL}`);
-
-
 
 // var npmInit = proc.spawn('npm init', {
 //   stdio: [null, null, 'inherit'],

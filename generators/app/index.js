@@ -180,14 +180,21 @@ module.exports = class ByuiTechOpsGenerator extends Generator {
     var myObject = "";
     var that = this;
     return new Promise(function (resolve, reject) {
+      //If this is a brand new project without an existing repo, then we will grab the year 
+      //for the license from today's date.
       if (that.options.new) {
-        //If this is a brand new project without an existing repo, then we will grab the year for the license from
-        //today's date.
-
-
+        var newYear = (new Date()).getFullYear();
+        //Write the LICENSE
+        that.fs.copyTpl(
+          that.templatePath('MIT_LICENSE'),
+          that.destinationPath('LICENSE'), {
+            yearGitHubRepoCreated: newYear,
+          });
         resolve(year);
-
       }
+
+      //If this is an existing repo, we will grab the year for the license from
+      //the repo via https request to github.
       var options = {
         host: 'api.github.com',
         path: '/repos/byuitechops/generator-byui-tech-ops',
@@ -195,17 +202,18 @@ module.exports = class ByuiTechOpsGenerator extends Generator {
           'User-Agent': 'generator-byui-tech-ops'
         }
       }
+      //Note: https request format should be backwards compatible with node v8.15.0 
       https.get(options, (res) => {
         res.on('data', (d) => {
           myObject += d;
         });
         res.on('end', function () {
-          var year = JSON.parse(myObject).created_at.substring(0, 4);
+          var existingYear = JSON.parse(myObject).created_at.substring(0, 4);
           //Write the LICENSE
           that.fs.copyTpl(
             that.templatePath('MIT_LICENSE'),
             that.destinationPath('LICENSE'), {
-              yearGitHubRepoCreated: year,
+              yearGitHubRepoCreated: existingYear,
             });
           resolve(year);
         });
