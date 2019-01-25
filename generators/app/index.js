@@ -190,7 +190,7 @@ module.exports = class ByuiTechOpsGenerator extends Generator {
           that.destinationPath('LICENSE'), {
             yearGitHubRepoCreated: newYear,
           });
-        resolve(year);
+        resolve(newYear);
       }
 
       //If this is an existing repo, we will grab the year for the license from
@@ -215,7 +215,7 @@ module.exports = class ByuiTechOpsGenerator extends Generator {
             that.destinationPath('LICENSE'), {
               yearGitHubRepoCreated: existingYear,
             });
-          resolve(year);
+          resolve(existingYear);
         });
 
       }).on('error', (e) => {
