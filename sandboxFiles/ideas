@@ -1,0 +1,6 @@
+1. Add a githooks file and configure projects to use the githooks setup generated
+  - This could include making sure the commit message is a certain length
+  - We could maybe find a way to not allow a push to master (we only merge into master) adding this to the githooks.
+
+2. Perhaps we could add an ESLint tool to the project set-up as well.
+
