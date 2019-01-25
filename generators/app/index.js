@@ -180,6 +180,14 @@ module.exports = class ByuiTechOpsGenerator extends Generator {
     var myObject = "";
     var that = this;
     return new Promise(function (resolve, reject) {
+      if (that.options.new) {
+        //If this is a brand new project without an existing repo, then we will grab the year for the license from
+        //today's date.
+
+
+        resolve(year);
+
+      }
       var options = {
         host: 'api.github.com',
         path: '/repos/byuitechops/generator-byui-tech-ops',
