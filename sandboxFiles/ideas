@@ -4,3 +4,5 @@
 
 2. Perhaps we could add an ESLint tool to the project set-up as well.
 
+3. potential issues.  What do you do when there is not a main.js (npm init assumes one of your files is the entry point), and you can either accept or put a blank space as in " "
+
