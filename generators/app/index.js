@@ -119,7 +119,7 @@ module.exports = class ByuiTechOpsGenerator extends Generator {
 
   }
 
-  writing() {
+  async writing() {
     this.log(chalk.yellowBright("\n--------- Writing Files ---------"));
 
     //Write the package.json
@@ -180,31 +180,57 @@ module.exports = class ByuiTechOpsGenerator extends Generator {
     var myObject = "";
     var that = this;
     return new Promise(function (resolve, reject) {
+      //If this is a brand new project without an existing repo, then we will grab the year 
+      //for the license from today's date.
+      if (that.options.new) {
+        var newYear = (new Date()).getFullYear();
+        //Write the LICENSE
+        that.fs.copyTpl(
+          that.templatePath('MIT_LICENSE'),
+          that.destinationPath('LICENSE'), {
+            yearGitHubRepoCreated: newYear,
+          });
+        resolve(newYear);
+      }
+
+      //If this is an existing repo, we will grab the year for the license from
+      //the repo via https request to github.
       var options = {
+        host: 'api.github.com',
+        path: '/repos/byuitechops/generator-byui-tech-ops',
         headers: {
           'User-Agent': 'generator-byui-tech-ops'
         }
       }
-      https.get('https://api.github.com/repos/byuitechops/generator-byui-tech-ops', options, (res) => {
+      //Note: https request format should be backwards compatible with node v8.15.0 
+      https.get(options, (res) => {
         res.on('data', (d) => {
           myObject += d;
         });
-        res.on('end', () => {
-          var year = JSON.parse(myObject).created_at.substring(0, 4);
+        res.on('end', function () {
+          var existingYear = JSON.parse(myObject).created_at.substring(0, 4);
           //Write the LICENSE
           that.fs.copyTpl(
             that.templatePath('MIT_LICENSE'),
             that.destinationPath('LICENSE'), {
+<<<<<<< HEAD
               yearGitHubRepoCreated: year,
             }
           );
           resolve(year);
+=======
+              yearGitHubRepoCreated: existingYear,
+            });
+          resolve(existingYear);
+>>>>>>> 6e314c5c6fc1a13159f75c34d39098ac86b23691
         });
 
       }).on('error', (e) => {
         reject(e);
       });
 
+    }).catch(e => {
+      that.log(e.message)
     });
 
   }

@@ -1,42 +1,10 @@
-const proc = require('child_process');
+console.log((new Date()).getFullYear());
 
 
-var options = {
-    headers: {
-        'User-Agent': 'generator-byui-tech-ops'
-    }
-}
-myObject = "";
-https.get('https://api.github.com/repos/byuitechops/generator-byui-tech-ops', options, (res) => {
-
-  res.on('data', (d) => {
-    myObject += d;
-  });
-
-  res.on('end', () => { 
-    var year = JSON.parse(myObject).created_at.substring(0, 4);
-        //Write the LICENSE
-        this.fs.copyTpl(
-            this.templatePath('MIT_LICENSE'),
-            this.destinationPath('LICENSE'),
-            {
-                yearGitHubRepoCreated: year,
-            }
-          );
-});
-
-}).on('error', (e) => {
-  console.error(e);
-});
-
-
-
-
+//Tried some other stuff:
 // process.env.VISUAL = "C:/Users/jedimasterryan/AppData/Local/Programs/Microsoft\ VS\ Code/Code.exe";
 
 // console.log(`Editor is ${process.env.VISUAL}`);
-
-
 
 // var npmInit = proc.spawn('npm init', {
 //   stdio: [null, null, 'inherit'],

@@ -45,9 +45,6 @@ npm test
  * Yeoman can be too opinionated at times but is easily convinced not to be.
  * Feel free to [learn more about Yeoman](http://yeoman.io/).
 
-## License
-
-
 [npm-image]: https://badge.fury.io/js/generator-byui.svg
 [npm-url]: https://npmjs.org/package/generator-byui
 [travis-image]: https://travis-ci.org/byuitechops/generator-byui.svg?branch=master
