@@ -99,7 +99,7 @@ module.exports = class ByuiTechOpsGenerator extends Generator {
 
   async prompting() {
     //Let the user know we are starting
-    this.log(chalk.yellowBright("\n--------- Begin Custom Questionaire ---------"));
+    this.log(chalk.yellowBright("\n--------- Begin Custom Questionnaire ---------"));
     return this.prompt(this._documentQuestions())
       .then(answers => {
         this.answers = answers;
@@ -194,8 +194,7 @@ module.exports = class ByuiTechOpsGenerator extends Generator {
           //Write the LICENSE
           that.fs.copyTpl(
             that.templatePath('MIT_LICENSE'),
-            that.destinationPath('LICENSE'),
-            {
+            that.destinationPath('LICENSE'), {
               yearGitHubRepoCreated: year,
             }
           );
@@ -243,7 +242,7 @@ module.exports = class ByuiTechOpsGenerator extends Generator {
       //Keep displaying the todo list until the user answers that the todo list was complete
       do {
 
-        (this.postQuestionResponses && this.postQuestionResponses.todoListComplete !== true) ? this.log(chalk.bgRed("\nYou Must Complete the Todo List before proceeding!\n")) : null;
+        (this.postQuestionResponses && this.postQuestionResponses.todoListComplete !== true) ? this.log(chalk.bgRed("\nYou Must Complete the Todo List before proceeding!\n")): null;
         await this.prompt(this._postQuestions())
           .then(postQuestionResponses => {
             this.postQuestionResponses = postQuestionResponses;

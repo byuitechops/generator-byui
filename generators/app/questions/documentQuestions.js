@@ -99,7 +99,7 @@ module.exports = function () {
   var requirementsQuestion = {
     name: 'requirements',
     type: 'editor',
-    message: questionTools.messagePadEnd('Project Reqiurements'),
+    message: questionTools.messagePadEnd('Project Requirements'),
     suffix: ':',
     validate: questionTools.noBlank,
     default: (this.packageJson.byui && this.packageJson.byui.projectRequirements) ? this.packageJson.byui.projectRequirements : ""
