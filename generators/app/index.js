@@ -213,16 +213,9 @@ module.exports = class ByuiTechOpsGenerator extends Generator {
           that.fs.copyTpl(
             that.templatePath('MIT_LICENSE'),
             that.destinationPath('LICENSE'), {
-<<<<<<< HEAD
-              yearGitHubRepoCreated: year,
-            }
-          );
-          resolve(year);
-=======
               yearGitHubRepoCreated: existingYear,
             });
           resolve(existingYear);
->>>>>>> 6e314c5c6fc1a13159f75c34d39098ac86b23691
         });
 
       }).on('error', (e) => {
