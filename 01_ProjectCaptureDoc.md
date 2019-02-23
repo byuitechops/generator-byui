@@ -77,19 +77,7 @@ A temporary server could be put up to say localhost:5000, and information could 
     - If the parent is not on the list, please enter the parent.
     - Choose your javascript templates (sync, callback or promise).
 
-The webpage would be a much more user friendly approach that might last longer and get better results.
-
-We simply ask the same questions but web form style, with radio buttons and checkboxes and text inputs. The data will be collected and input into a json object that yeoman can then take and run with in the same way that yeoman ran with the CLI questions.
-
 -----
-
-NEED TO GO OVER THIS STUFF WITH JOSH TO SEE EXACTLY WHAT WE WILL BE DOING
-
-Questions we need answered before going forward:
-
-1. What is IT's current project life cycle system
-1. What will our system be.
-1. When we know these two answers, how can we build technology to assist in our system. Do we want a document generator for every stage? Do we want a one stop shop that creates boilerplate code and all documents?  That we can run at different times with `yo byui-tech-ops --add` to add the next stage or maybe we make each stage an option or a flag. Do we have access to a third party workflow or should we mimic our own? 
 
 
 ## Expectations
