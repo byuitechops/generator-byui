@@ -1,5 +1,7 @@
-console.log((new Date()).getFullYear());
+// console.log((new Date()).getFullYear());
 
+
+console.log(require.resolve('./ideas.txt'));
 
 //Tried some other stuff:
 // process.env.VISUAL = "C:/Users/jedimasterryan/AppData/Local/Programs/Microsoft\ VS\ Code/Code.exe";
