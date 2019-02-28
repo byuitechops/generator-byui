@@ -56,7 +56,13 @@ The developer will enter information pertaining to the project into a CLI questi
 - Run individual sub-generators to just set up that individual part of the project.
 - Add `--update` to any generator to modify it to update a particular item instead of creating a new one.
 - Run `yo byui-tech-ops --audit` to see what documents need to be added to a project.
-- 
+
+
+#### Other Requirements:
+
+- Should check to make sure that we are NOT on the master branch
+- Should check the current version of the generator (api call) with the version installed on the user's machine
+- There should be a feature for current projects which checks the generator version of the project (if the key exists) against the generator version on the user's machine.
 -----
 
 
