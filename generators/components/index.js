@@ -20,8 +20,6 @@ module.exports = class extends Generator {
 
   end() {
     this.log("and we just ended");
-
-
   }
 
 

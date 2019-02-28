@@ -52,24 +52,11 @@ The developer will enter information pertaining to the project into a CLI questi
 
 #### Type: CLI or Webpage
 
-- Run `yo byui-tech-ops` to update an existing project
-- Add the `--new` options flag to start a new project
-- Add the `--exp` to remove extra instructions (if you have followed the process before and know what you are doing, there are some extra checks that are removed.)
-- Questions asked:
-    - ReadMe Check. Then 'A README.md file exists would you like to append?'
-    - PROJECTINFO.md Check. Then 'A PROJECTINFO.md file exists would you like to append?
-    - Verify Author. (Gotten from the existing package.json or NPM INIT)
-    - Verify Project Description (Gotten from the existing package.json or NPM INIT)
-    - Project Purpose.
-    - Project Stakeholders.
-    - Size of project select. (Mini, small, medium, large).
-    - Project Requirements
-    - What type of install instructions would you like in your readMe (to select the appropriate template).
-    - Is this project (repo) part of a bigger project (does it have a parent)?
-    - If so who is the parent? (select from a list)
-    - If the parent is not on the list, please enter the parent.
-    - Choose your javascript templates (sync, callback or promise).
-
+- Run `yo byui-tech-ops` to set up the project.
+- Run individual sub-generators to just set up that individual part of the project.
+- Add `--update` to any generator to modify it to update a particular item instead of creating a new one.
+- Run `yo byui-tech-ops --audit` to see what documents need to be added to a project.
+- 
 -----
 
 
