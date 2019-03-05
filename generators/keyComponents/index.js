@@ -1,13 +1,13 @@
 const ByuiConfig = require('../ByuiConfig.js');
 
-module.exports = class License extends ByuiConfig {
+module.exports = class LifeCycle extends ByuiConfig {
   constructor(args, opts) {
     super(args, opts);
 
   }
 
   initializing() {
-    this.log("license reporting in");
+    this.log("keyComponents reporting in");
 
   }
 
@@ -20,13 +20,11 @@ module.exports = class License extends ByuiConfig {
   }
 
   configuring() {
+
     //Run the update logic if the update flag is found
     if (this.update) {
-      this.byuiGeneratorTools.updateFile('license');
-      //Get the year from the github project
+      this.byuiGeneratorTools.updateFile('keyComponents');
     }
-
-    //Get the current year using moment js
   }
 
   //Default functions are run here
@@ -50,5 +48,6 @@ module.exports = class License extends ByuiConfig {
 
 
   }
+
 
 };

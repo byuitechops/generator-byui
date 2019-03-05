@@ -53,6 +53,4 @@ module.exports = class ByuiConfig extends Generator {
     }
   }
 
-
-
 }

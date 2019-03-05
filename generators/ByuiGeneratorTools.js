@@ -36,6 +36,17 @@ module.exports = class ByuiGeneratorTools {
   }
 
 
+  updateFile(filename) {
+    //Rename current filename to same name plus 'OLD' appended
+  }
+
+
+  audit() {
+    //Check all the files, and report what files are needed and which ones we already have.
+
+  }
+
+
 
 
 

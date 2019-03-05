@@ -16,6 +16,10 @@ module.exports = function runCompleteSetUp() {
 
   };
 
+  //Set up the byuiOptions object
+  this.options.byuiOptions = {
+    configs: this.configs
+  };
 
   //2. Perform Checks and Report Findings
   if (this.configs.onMaster) {
