@@ -2,6 +2,7 @@
 const Generator = require('yeoman-generator');
 const ByuiGeneratorTools = require('./ByuiGeneratorTools.js');
 const runCompleteSetUp = require('./runCompleteSetUp.js');
+const path = require('path');
 
 /***************************************************
  *  ByuiConfig Class
@@ -27,7 +28,7 @@ module.exports = class ByuiConfig extends Generator {
     this.option("update");
 
     //Get the generator version number for tracking
-    const generatorPackageJson = require('../../package.json');
+    const generatorPackageJson = require(path.join(__dirname, '..', 'package.json'));
     this.generatorVersion = generatorPackageJson.version;
 
     //Choose our settings:    
