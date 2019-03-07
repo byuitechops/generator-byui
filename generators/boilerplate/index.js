@@ -11,10 +11,13 @@ module.exports = class Boilerplate extends ByuiConfig {
 
   }
 
-  prompting() {
-
+  async prompting() {
     if (!this.options.byuiOptions.prompt) {
-
+      return this.prompt(this.questions).then(answers => {
+        this.options.byuiOptions.prompt = answers;
+      }).catch(e => {
+        this.log("Error when prompting: ", e.message);
+      });
     }
 
   }

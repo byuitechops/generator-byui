@@ -106,7 +106,7 @@ module.exports = class ByuiTechOpsGenerator extends Generator {
         return this.answers;
       })
       .catch(e => {
-        this.log("Error when prompting for document questions: ", e.message);
+        this.log("Error when prompting: ", e.message);
       });
   }
 

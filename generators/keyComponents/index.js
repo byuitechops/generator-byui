@@ -14,15 +14,21 @@ module.exports = class LifeCycle extends ByuiConfig {
   prompting() {
 
     if (!this.options.byuiOptions.prompt) {
-
+      this.log("Key Components Prompt");
+      return this.prompt(this.questions).then(answers => {
+        this.options.byuiOptions.prompt = answers;
+      }).catch(e => {
+        this.log("Error when prompting: ", e.message);
+      });
     }
+
 
   }
 
   configuring() {
 
     //Run the update logic if the update flag is found
-    if (this.update) {
+    if (this.options.update) {
       this.byuiGeneratorTools.updateFile('keyComponents');
     }
   }

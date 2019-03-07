@@ -23,12 +23,6 @@ module.exports = class ByuiConfig extends Generator {
       required: false
     });
 
-    //Yeoman only allows 3 types: String, Number and Array, so to pass an object.
-    //we will need to stringify then parse that object.
-    if (this.options.byuiOptions) {
-      this.options.byuiOptions = JSON.parse(this.options.byuiOptions);
-    }
-
     //Set the update option
     this.option("update");
 
@@ -43,6 +37,9 @@ module.exports = class ByuiConfig extends Generator {
     //Set all the member functions
     this.byuiGeneratorTools = new ByuiGeneratorTools(this);
     this._runCompleteSetUp = runCompleteSetUp;
+
+    //Load question bank
+    this.questions = require('./questionBank.js');
 
     //If the byuiOptions object does not exist,
     //then we'll want to run all the checks

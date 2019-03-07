@@ -16,6 +16,10 @@ module.exports = function runCompleteSetUp() {
 
   };
 
+  //This line is SO important.  If it is not in place, then a generator that composes with other
+  //generators that all inherit from the ByuiConfig generator, that generator will cause the
+  //set up to be run every time a composeWith generator is called, and in that case, we only want
+  //the setup to run once.
   //Set up the byuiOptions object
   this.options.byuiOptions = {
     configs: this.configs
