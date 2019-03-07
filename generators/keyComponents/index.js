@@ -13,9 +13,10 @@ module.exports = class LifeCycle extends ByuiConfig {
 
   prompting() {
 
+    var questionsToAsk = [this.questions.projectName];
+
     if (!this.options.byuiOptions.prompt) {
-      this.log("Key Components Prompt");
-      return this.prompt(this.questions).then(answers => {
+      return this.prompt(questionsToAsk).then(answers => {
         this.options.byuiOptions.prompt = answers;
       }).catch(e => {
         this.log("Error when prompting: ", e.message);
@@ -36,7 +37,12 @@ module.exports = class LifeCycle extends ByuiConfig {
   //Default functions are run here
 
   writing() {
+    this.fs.copyTpl(
+      this.templatePath(`KeyComponentsDoc.md`),
+      this.destinationPath(this.filenames.keyComponents),
+      this.options.byuiOptions.prompt
 
+    );
 
   }
 

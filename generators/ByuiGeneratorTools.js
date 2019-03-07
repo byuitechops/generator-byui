@@ -42,17 +42,22 @@ module.exports = class ByuiGeneratorTools {
   async appendOldToCurrentFile(filename) {
     //Rename current filename to same name plus 'OLD' appended
     var that = this.context;
-    return await new Promise(function (resolve, reject) {
-      let oldPath = path.join(that.contextRoot, filename);
-      let newPath = path.join(that.contextRoot, "OLD_" + filename);
-      fs.rename(oldPath, newPath, (err) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve();
-        }
-      });
-    }).catch(e => that.log("Error when prepending 'OLD' to existing file: " + e.message));
+    var oldPath = path.join(that.contextRoot, filename);
+    var newPath = path.join(that.contextRoot, "OLD_" + filename);
+
+    if (fs.existsSync(oldPath)) {
+      await new Promise(function (resolve, reject) {
+        fs.rename(oldPath, newPath, (err) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve();
+          }
+        });
+      }).catch(e => that.log("Error when prepending 'OLD' to existing file: " + e.message));
+
+    }
+
   }
 
 

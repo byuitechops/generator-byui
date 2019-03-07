@@ -36,7 +36,7 @@ module.exports = class LifeCycle extends ByuiConfig {
 
   writing() {
     this.fs.copyTpl(
-      this.templatePath(`capture.md`),
+      this.templatePath('ProjectCaptureDoc.md'),
       this.destinationPath(this.filenames.projectCapture),
       this.options.byuiOptions.prompt
 
