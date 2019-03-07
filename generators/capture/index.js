@@ -28,7 +28,7 @@ module.exports = class LifeCycle extends ByuiConfig {
   configuring() {
     //Run the update logic if the update flag is found
     if (this.options.update) {
-      this.byuiGeneratorTools.updateFile('capture');
+      this.byuiGeneratorTools.appendOldToCurrentFile(this.filenames.projectCapture);
     }
   }
 
@@ -37,7 +37,7 @@ module.exports = class LifeCycle extends ByuiConfig {
   writing() {
     this.fs.copyTpl(
       this.templatePath(`capture.md`),
-      this.destinationPath('ProjectCaptureDoc.md'),
+      this.destinationPath(this.filenames.projectCapture),
       this.options.byuiOptions.prompt
 
     );

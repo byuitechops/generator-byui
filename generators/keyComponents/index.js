@@ -29,7 +29,7 @@ module.exports = class LifeCycle extends ByuiConfig {
 
     //Run the update logic if the update flag is found
     if (this.options.update) {
-      this.byuiGeneratorTools.updateFile('keyComponents');
+      this.byuiGeneratorTools.appendOldToCurrentFile(this.filenames.keyComponents);
     }
   }
 

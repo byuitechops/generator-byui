@@ -18,7 +18,7 @@ module.exports = class License extends ByuiConfig {
 
     //Run the update logic if the update flag is found
     if (this.options.update) {
-      this.byuiGeneratorTools.appendOldToCurrentFile('LICENSE');
+      this.byuiGeneratorTools.appendOldToCurrentFile(this.filenames.license);
 
       var that = this;
       var myObject = "";
@@ -53,7 +53,7 @@ module.exports = class License extends ByuiConfig {
   writing() {
     this.fs.copyTpl(
       this.templatePath(`MIT_LICENSE.ejs`),
-      this.destinationPath('LICENSE'), {
+      this.destinationPath(this.filenames.license), {
         yearGitHubRepoCreated: this.yearGitHubRepoCreated
       }
     );

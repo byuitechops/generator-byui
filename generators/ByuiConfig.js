@@ -41,6 +41,9 @@ module.exports = class ByuiConfig extends Generator {
     //Load question bank
     this.questions = require('./questionBank.js');
 
+    //Make the filename object available all over
+    this.filenames = require('./filenames.js');
+
     //If the byuiOptions object does not exist,
     //then we'll want to run all the checks
     //We have this conditional, so that we do not run all the checks for every subgenerator

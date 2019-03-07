@@ -27,7 +27,7 @@ module.exports = class ReadMe extends ByuiConfig {
   configuring() {
     //Run the update logic if the update flag is found
     if (this.options.update) {
-      this.byuiGeneratorTools.updateFile('readme');
+      this.byuiGeneratorTools.appendOldToCurrentFile(this.filenames.readMe);
     }
   }
 
@@ -36,7 +36,7 @@ module.exports = class ReadMe extends ByuiConfig {
   writing() {
     this.fs.copyTpl(
       this.templatePath(`README.ejs`),
-      this.destinationPath('README.md'),
+      this.destinationPath(this.filenames.readMe),
       this.options.byuiOptions.prompt
     );
   }
