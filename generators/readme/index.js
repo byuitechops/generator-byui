@@ -14,7 +14,7 @@ module.exports = class ReadMe extends ByuiConfig {
   async prompting() {
 
     var questionsToAsk = [this.questions.projectName];
-    if (!this.options.byuiOptions.prompt) {
+    if (this.options.byuiOptions.stackOfGeneratorsCalled === []) {
       this.log("We should not be in here");
       return this.prompt(questionsToAsk).then(answers => {
         this.options.byuiOptions.prompt = answers;
@@ -26,7 +26,7 @@ module.exports = class ReadMe extends ByuiConfig {
 
   configuring() {
     //Run the update logic if the update flag is found
-    if (this.options.update) {
+    if (this.options.byuiOptions.update) {
       this.byuiGeneratorTools.appendOldToCurrentFile(this.filenames.readMe);
     }
   }

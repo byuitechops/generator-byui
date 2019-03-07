@@ -11,15 +11,13 @@ module.exports = class LifeCycle extends ByuiConfig {
     super(args, opts);
 
     this.lifeCycleSubGenerators = lifeCycleSubGenerators;
-
-    if (!this.options.byuiOptions.prompt) {
-      this.options.byuiOptions.prompt = "This prompt needs to be in place, so the sub generators do not prompt";
-    }
-
+    //Must push the name of the generator onto this list, so subgenerators, know they have been
+    //called from another generator
+    this.options.byuiOptions.stackOfGeneratorsCalled.push('LifeCycle');
   }
 
   initializing() {
-    this.log("lifecycle reporting in");
+
     var that = this;
     this.lifeCycleSubGenerators.forEach(function (subGenerator) {
       that.composeWith(require.resolve(`../${subGenerator}`), {
@@ -32,14 +30,22 @@ module.exports = class LifeCycle extends ByuiConfig {
 
   prompting() {
 
-    if (!this.options.byuiOptions.prompt) {
-      return this.prompt(this.questions).then(answers => {
+    var questionsToAsk = [this.questions.projectName];
+
+    //We have pushed one generator onto the stack of generators array.
+    //If there are more generators, then this generator is getting called from another
+    //generator.
+    if (this.options.byuiOptions.stackOfGeneratorsCalled.length === 1) {
+      return this.prompt(questionsToAsk).then(answers => {
         this.options.byuiOptions.prompt = answers;
       }).catch(e => {
         this.log("Error when prompting: ", e.message);
       });
     }
 
+
+  }
+  configuring() {
 
   }
 

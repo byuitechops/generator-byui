@@ -15,7 +15,7 @@ module.exports = class LifeCycle extends ByuiConfig {
 
     var questionsToAsk = [this.questions.projectName];
 
-    if (!this.options.byuiOptions.prompt) {
+    if (this.options.byuiOptions.stackOfGeneratorsCalled === []) {
       return this.prompt(questionsToAsk).then(answers => {
         this.options.byuiOptions.prompt = answers;
       }).catch(e => {
@@ -27,7 +27,7 @@ module.exports = class LifeCycle extends ByuiConfig {
 
   configuring() {
     //Run the update logic if the update flag is found
-    if (this.options.update) {
+    if (this.options.byuiOptions.update) {
       this.byuiGeneratorTools.appendOldToCurrentFile(this.filenames.projectCapture);
     }
   }

@@ -17,7 +17,7 @@ module.exports = class License extends ByuiConfig {
   async configuring() {
 
     //Run the update logic if the update flag is found
-    if (this.options.update) {
+    if (this.options.byuiOptions.update) {
       this.byuiGeneratorTools.appendOldToCurrentFile(this.filenames.license);
 
       var that = this;

@@ -22,7 +22,9 @@ module.exports = function runCompleteSetUp() {
   //the setup to run once.
   //Set up the byuiOptions object
   this.options.byuiOptions = {
-    configs: this.configs
+    configs: this.configs,
+    stackOfGeneratorsCalled: [],
+    update: this.options.update
   };
 
   //2. Perform Checks and Report Findings

@@ -12,7 +12,7 @@ module.exports = class Boilerplate extends ByuiConfig {
   }
 
   async prompting() {
-    if (!this.options.byuiOptions.prompt) {
+    if (this.options.byuiOptions.stackOfGeneratorsCalled === []) {
       return this.prompt(this.questions).then(answers => {
         this.options.byuiOptions.prompt = answers;
       }).catch(e => {

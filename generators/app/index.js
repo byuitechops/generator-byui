@@ -21,16 +21,13 @@ module.exports = class SetUp extends ByuiConfig {
 
     this.subGeneratorsToRun = subGeneratorsToRun;
     this.codeTemplates = listOfCodeTemplates;
-
-    //Add prompt key to this.options.byuiOptions (This is necessary to keep all the subgenerators from prompting as well).
-    this.options.byuiOptions.prompt = "prompt will be taking place in SetUp generator";
-
-
+    //Must push the name of the generator onto this list, so subgenerators, know they have been
+    //called from another generator
+    this.options.byuiOptions.stackOfGeneratorsCalled.push('SetUp');
   }
 
   initializing() {
     var that = this;
-    this.log("logging from setup", this.generatorVersion);
     this.subGeneratorsToRun.forEach(function (subGenerator) {
       that.composeWith(require.resolve(`../${subGenerator}`), {
         byuiOptions: that.options.byuiOptions
