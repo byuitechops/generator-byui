@@ -18,7 +18,7 @@ module.exports = class License extends ByuiConfig {
 
     //Run the update logic if the update flag is found
     if (this.options.update) {
-      this.byuiGeneratorTools.updateFile('license');
+      this.byuiGeneratorTools.appendOldToCurrentFile('LICENSE');
 
       var that = this;
       var myObject = "";
