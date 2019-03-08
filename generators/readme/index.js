@@ -14,7 +14,7 @@ module.exports = class ReadMe extends ByuiConfig {
   async prompting() {
 
     var questionsToAsk = [this.questions.projectName];
-    if (this.options.byuiOptions.stackOfGeneratorsCalled === []) {
+    if (this.options.byuiOptions.stackOfGeneratorsCalled.length === 0) {
       this.log("We should not be in here");
       return this.prompt(questionsToAsk).then(answers => {
         this.options.byuiOptions.prompt = answers;

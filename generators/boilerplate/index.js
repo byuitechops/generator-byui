@@ -24,7 +24,7 @@ module.exports = class Boilerplate extends ByuiConfig {
 
   configuring() {
 
-    //Add Prompt values to fillTemplateObject
+    //Add Prompt values to fillTemplateObject.  The fillTemplateObject is first defined in runCompleteSetUp.js
     Object.assign(this.options.byuiOptions.fillTemplateObject, this.options.byuiOptions.prompt);
 
 
