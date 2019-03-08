@@ -29,15 +29,19 @@ module.exports = class ReadMe extends ByuiConfig {
     if (this.options.byuiOptions.update) {
       this.byuiGeneratorTools.appendOldToCurrentFile(this.filenames.readMe);
     }
+
+    //Add Prompt values to fillTemplateObject
+    Object.assign(this.options.byuiOptions.fillTemplateObject, this.options.byuiOptions.prompt);
+
   }
 
   //Default functions are run here
 
   writing() {
     this.fs.copyTpl(
-      this.templatePath(`README.ejs`),
+      this.templatePath(this.filenames.readMe),
       this.destinationPath(this.filenames.readMe),
-      this.options.byuiOptions.prompt
+      this.options.byuiOptions.fillTemplateObject
     );
   }
 

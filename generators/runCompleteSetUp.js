@@ -1,3 +1,4 @@
+const moment = require('moment');
 /***************************************************
  *  runCompleteSetUp
  *  This function is a member function for the
@@ -24,7 +25,11 @@ module.exports = function runCompleteSetUp() {
   this.options.byuiOptions = {
     configs: this.configs,
     stackOfGeneratorsCalled: [],
-    update: this.options.update
+    update: this.options.update,
+    fillTemplateObject: {
+      timeCreated: moment().format('YYYY MMMM DD, hh:mm A'),
+      generatorVersion: this.generatorVersion,
+    }
   };
 
   //2. Perform Checks and Report Findings

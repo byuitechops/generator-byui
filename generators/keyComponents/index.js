@@ -32,6 +32,10 @@ module.exports = class LifeCycle extends ByuiConfig {
     if (this.options.byuiOptions.update) {
       this.byuiGeneratorTools.appendOldToCurrentFile(this.filenames.keyComponents);
     }
+
+    //Add Prompt values to fillTemplateObject
+    Object.assign(this.options.byuiOptions.fillTemplateObject, this.options.byuiOptions.prompt);
+
   }
 
   //Default functions are run here

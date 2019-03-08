@@ -24,6 +24,9 @@ module.exports = class Boilerplate extends ByuiConfig {
 
   configuring() {
 
+    //Add Prompt values to fillTemplateObject
+    Object.assign(this.options.byuiOptions.fillTemplateObject, this.options.byuiOptions.prompt);
+
 
   }
 

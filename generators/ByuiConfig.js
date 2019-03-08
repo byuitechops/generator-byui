@@ -47,7 +47,7 @@ module.exports = class ByuiConfig extends Generator {
 
     //If the byuiOptions object does not exist,
     //then we'll want to run all the checks
-    //We have this conditional, so that we do not run all the checks for every subgenerator
+    //We have this conditional, so that we do not run all the checks for every sub generator
     //run within a generator (using composeWith).
     if (!this.options.byuiOptions) {
       this._runCompleteSetUp();
