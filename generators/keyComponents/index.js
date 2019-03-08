@@ -7,23 +7,22 @@ module.exports = class LifeCycle extends ByuiConfig {
   }
 
   initializing() {
-    this.log("keyComponents reporting in");
 
   }
 
-  prompting() {
+  async prompting() {
 
     var questionsToAsk = [this.questions.projectName];
-
     if (this.options.byuiOptions.stackOfGeneratorsCalled.length === 0) {
       return this.prompt(questionsToAsk).then(answers => {
+        //Store the prompt results in the byuiOptions object
         this.options.byuiOptions.prompt = answers;
+        //Add Prompt values to fillTemplateObject.  The fillTemplateObject is first defined in runCompleteSetUp.js
+        Object.assign(this.options.byuiOptions.fillTemplateObject, answers);
       }).catch(e => {
         this.log("Error when prompting: ", e.message);
       });
     }
-
-
   }
 
   configuring() {
@@ -42,7 +41,7 @@ module.exports = class LifeCycle extends ByuiConfig {
 
   writing() {
     this.fs.copyTpl(
-      this.templatePath(`KeyComponentsDoc.md`),
+      this.templatePath(this.filenames.keyComponents),
       this.destinationPath(this.filenames.keyComponents),
       this.options.byuiOptions.prompt
 

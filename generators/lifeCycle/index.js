@@ -28,22 +28,19 @@ module.exports = class LifeCycle extends ByuiConfig {
 
   }
 
-  prompting() {
+  async prompting() {
 
     var questionsToAsk = [this.questions.projectName];
-
-    //We have pushed one generator onto the stack of generators array.
-    //If there are more generators, then this generator is getting called from another
-    //generator.
     if (this.options.byuiOptions.stackOfGeneratorsCalled.length === 1) {
       return this.prompt(questionsToAsk).then(answers => {
+        //Store the prompt results in the byuiOptions object
         this.options.byuiOptions.prompt = answers;
+        //Add Prompt values to fillTemplateObject.  The fillTemplateObject is first defined in runCompleteSetUp.js
+        Object.assign(this.options.byuiOptions.fillTemplateObject, answers);
       }).catch(e => {
         this.log("Error when prompting: ", e.message);
       });
     }
-
-
   }
   configuring() {
 

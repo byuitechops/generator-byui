@@ -7,7 +7,6 @@ module.exports = class ReadMe extends ByuiConfig {
   }
 
   initializing() {
-    this.log("readMe reporting in");
 
   }
 
@@ -15,9 +14,10 @@ module.exports = class ReadMe extends ByuiConfig {
 
     var questionsToAsk = [this.questions.projectName];
     if (this.options.byuiOptions.stackOfGeneratorsCalled.length === 0) {
-      this.log("We should not be in here");
       return this.prompt(questionsToAsk).then(answers => {
         this.options.byuiOptions.prompt = answers;
+        //Add Prompt values to fillTemplateObject.  The fillTemplateObject is first defined in runCompleteSetUp.js
+        Object.assign(this.options.byuiOptions.fillTemplateObject, answers);
       }).catch(e => {
         this.log("Error when prompting: ", e.message);
       });
@@ -30,8 +30,6 @@ module.exports = class ReadMe extends ByuiConfig {
       this.byuiGeneratorTools.appendOldToCurrentFile(this.filenames.readMe);
     }
 
-    //Add Prompt values to fillTemplateObject
-    Object.assign(this.options.byuiOptions.fillTemplateObject, this.options.byuiOptions.prompt);
 
   }
 
