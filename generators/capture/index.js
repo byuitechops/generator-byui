@@ -14,8 +14,8 @@ module.exports = class LifeCycle extends ByuiConfig {
   prompting() {
 
     var questionsToAsk = [this.questions.projectName];
-
-    if (this.options.byuiOptions.stackOfGeneratorsCalled === []) {
+    this.log(this.options.byuiOptions.stackOfGeneratorsCalled);
+    if (this.options.byuiOptions.stackOfGeneratorsCalled.length === 0) {
       return this.prompt(questionsToAsk).then(answers => {
         this.options.byuiOptions.prompt = answers;
       }).catch(e => {
