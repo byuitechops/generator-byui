@@ -12,7 +12,7 @@ module.exports = class Boilerplate extends ByuiConfig {
 
   async prompting() {
 
-    var questionsToAsk = [this.questions.projectName];
+    var questionsToAsk = [this.questions.codeTemplate];
     if (this.options.byuiOptions.stackOfGeneratorsCalled.length === 0) {
       return this.prompt(questionsToAsk).then(answers => {
         //Store the prompt results in the byuiOptions object
@@ -27,15 +27,34 @@ module.exports = class Boilerplate extends ByuiConfig {
 
   configuring() {
 
-    //Add Prompt values to fillTemplateObject.  The fillTemplateObject is first defined in runCompleteSetUp.js
-    Object.assign(this.options.byuiOptions.fillTemplateObject, this.options.byuiOptions.prompt);
-
 
   }
 
   //Default functions are run here
 
   writing() {
+
+
+    //Write main.js file
+    this.fs.copyTpl(
+      this.templatePath(`${this.options.byuiOptions.fillTemplateObject.codeTemplate}/${this.filenames.mainJs}`),
+      this.destinationPath(this.filenames.mainJs),
+      this.options.byuiOptions.fillTemplateObject
+    );
+
+    //Write bin.js file
+    this.fs.copyTpl(
+      this.templatePath(`${this.options.byuiOptions.fillTemplateObject.codeTemplate}/${this.filenames.binJs}`),
+      this.destinationPath(this.filenames.binJs),
+      this.options.byuiOptions.fillTemplateObject
+    );
+
+    //Write test.js file
+    this.fs.copyTpl(
+      this.templatePath(`${this.options.byuiOptions.fillTemplateObject.codeTemplate}/${this.filenames.testJs}`),
+      this.destinationPath(this.filenames.testJs),
+      this.options.byuiOptions.fillTemplateObject
+    );
 
 
   }

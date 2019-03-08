@@ -32,7 +32,7 @@ module.exports = class SetUp extends ByuiConfig {
   async prompting() {
 
     //Set up questions object
-    var questionsToAsk = [this.questions.projectName, this.questions.jsTemplate];
+    var questionsToAsk = [this.questions.projectName, this.questions.codeTemplate];
 
     //Ask the questions
     return this.prompt(questionsToAsk).then(answers => {

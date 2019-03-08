@@ -9,8 +9,8 @@ var nameOfProjectQuestion = {
 };
 
 //---------------  CODE SETUP QUESTIONS ----------------
-var jsTemplateQuestion = {
-  name: 'jsTemplate',
+var codeTemplateQuestion = {
+  name: 'codeTemplate',
   type: 'list',
   message: questionTools.messagePadEnd('Choose your JavaScript Templates'),
   suffix: ':',
@@ -21,7 +21,7 @@ var jsTemplateQuestion = {
 
 var questionBank = {
   projectName: nameOfProjectQuestion,
-  jsTemplate: jsTemplateQuestion
+  codeTemplate: codeTemplateQuestion
 }
 
 module.exports = questionBank;

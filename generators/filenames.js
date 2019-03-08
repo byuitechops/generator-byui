@@ -4,4 +4,7 @@ module.exports = {
   projectCapture: "ProjectCaptureDoc.md",
   keyComponents: "KeyComponentsDoc.md",
 
+  testJs: 'test.js',
+  mainJs: 'main.js',
+  binJs: 'bin.js',
 };
