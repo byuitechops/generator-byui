@@ -8,19 +8,11 @@ const subGeneratorsToRun = [
   'lifeCycle',
 ];
 
-var listOfCodeTemplates = [
-  'sync',
-  'promises',
-  'callbacks',
-];
-
-
 module.exports = class SetUp extends ByuiConfig {
   constructor(args, opts) {
     super(args, opts);
 
     this.subGeneratorsToRun = subGeneratorsToRun;
-    this.codeTemplates = listOfCodeTemplates;
     //Must push the name of the generator onto this list, so subgenerators, know they have been
     //called from another generator
     this.options.byuiOptions.stackOfGeneratorsCalled.push('SetUp');
