@@ -30,7 +30,7 @@ module.exports = class LifeCycle extends ByuiConfig {
 
   async prompting() {
 
-    var questionsToAsk = [this.questions.projectName];
+    var questionsToAsk = [this.questions.projectName, this.questions.author, this.questions.stakeholders];
     if (this.options.byuiOptions.stackOfGeneratorsCalled.length === 1) {
       return this.prompt(questionsToAsk).then(answers => {
         //Store the prompt results in the byuiOptions object

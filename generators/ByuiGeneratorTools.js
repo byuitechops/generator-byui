@@ -1,5 +1,7 @@
 const fs = require('fs');
 const path = require('path');
+const chalk = require('chalk');
+const proc = require('child_process');
 
 /***************************************************
  *  ByuiGeneratorTools Class
@@ -30,6 +32,10 @@ module.exports = class ByuiGeneratorTools {
   onMasterCheck() {
     //Check if we are on the master branch
     this.context.log("in master check method");
+    // let tempFileName = (new Date()).getTime();
+    // proc.spawn(`git branch > ${tempFileName}.txt`);
+    // let branchInfoContents = fs.readFileSync(path.join(this.context.contextRoot, tempFileName));
+
     return true; //or false
   }
 
