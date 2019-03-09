@@ -13,7 +13,7 @@ module.exports = class SetUp extends ByuiConfig {
     super(args, opts);
 
     this.subGeneratorsToRun = subGeneratorsToRun;
-    //Must push the name of the generator onto this list, so subgenerators, know they have been
+    //Must push the name of the generator onto this list, so sub generators, know they have been
     //called from another generator
     this.options.byuiOptions.stackOfGeneratorsCalled.push('SetUp');
   }
@@ -32,7 +32,7 @@ module.exports = class SetUp extends ByuiConfig {
   async prompting() {
 
     //Set up questions object
-    var questionsToAsk = [this.questions.projectName, this.questions.codeTemplate];
+    var questionsToAsk = [this.questions.projectName, this.questions.codeTemplate, this.questions.author, this.questions.stakeholders];
 
     //Ask the questions
     return this.prompt(questionsToAsk).then(answers => {

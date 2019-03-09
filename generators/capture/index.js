@@ -13,7 +13,7 @@ module.exports = class LifeCycle extends ByuiConfig {
 
   async prompting() {
 
-    var questionsToAsk = [this.questions.projectName];
+    var questionsToAsk = [this.questions.projectName, this.questions.author, this.questions.stakeholders];
     if (this.options.byuiOptions.stackOfGeneratorsCalled.length === 0) {
       return this.prompt(questionsToAsk).then(answers => {
         //Store the prompt results in the byuiOptions object
@@ -43,7 +43,7 @@ module.exports = class LifeCycle extends ByuiConfig {
     this.fs.copyTpl(
       this.templatePath(this.filenames.projectCapture),
       this.destinationPath(this.filenames.projectCapture),
-      this.options.byuiOptions.prompt
+      this.options.byuiOptions.fillTemplateObject
 
     );
   }

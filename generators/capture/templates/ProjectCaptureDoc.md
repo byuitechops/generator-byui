@@ -1,7 +1,7 @@
 # Project Capture Document for <%= projectName %>
-#### *Author: Your_Name_Here*
-#### *Stakeholder(s): Their_Names_With_Commas*
-#### *Date: Todays Date*
+#### *Author: <%= author %>*
+#### *Stakeholder(s): <%= stakeholders %>*
+#### *Date: <%= timeCreated %>*
 
 
 ## Background

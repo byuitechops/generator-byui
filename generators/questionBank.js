@@ -19,9 +19,29 @@ var codeTemplateQuestion = {
 };
 // ---------------------------------------------------------
 
+var authorQuestion = {
+  name: 'author',
+  type: 'input',
+  message: questionTools.messagePadEnd('Author Name'),
+  suffix: ':',
+  validate: questionTools.noBlank,
+};
+
+var stakeholdersQuestion = {
+  name: 'stakeholders',
+  type: 'input',
+  message: questionTools.messagePadEnd('Project Stakeholders'),
+  suffix: ':',
+  validate: questionTools.noBlank,
+};
+
+
 var questionBank = {
   projectName: nameOfProjectQuestion,
-  codeTemplate: codeTemplateQuestion
+  codeTemplate: codeTemplateQuestion,
+  author: authorQuestion,
+  stakeholders: stakeholdersQuestion,
+
 }
 
 module.exports = questionBank;

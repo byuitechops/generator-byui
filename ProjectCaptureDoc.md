@@ -1,7 +1,7 @@
 # Project Capture Document for Test
-#### *Author: Your_Name_Here*
-#### *Stakeholder(s): Their_Names_With_Commas*
-#### *Date: Todays Date*
+#### *Author: Ryan
+#### *Stakeholder(s): Internal
+#### *Date: 2019 March 08, 05:21 PM
 
 
 ## Background

@@ -43,7 +43,7 @@ module.exports = class LifeCycle extends ByuiConfig {
     this.fs.copyTpl(
       this.templatePath(this.filenames.keyComponents),
       this.destinationPath(this.filenames.keyComponents),
-      this.options.byuiOptions.prompt
+      this.options.byuiOptions.fillTemplateObject
 
     );
 
