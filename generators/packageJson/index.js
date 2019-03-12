@@ -30,6 +30,7 @@ module.exports = class PackageJson extends ByuiConfig {
   }
 
   async initializing() {
+    await super.initializing();
     try {
       var code = 1;
       do {

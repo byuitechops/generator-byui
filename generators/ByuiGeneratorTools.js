@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const chalk = require('chalk');
 const proc = require('child_process');
-
+const simpleGit = require('simple-git');
 /***************************************************
  *  ByuiGeneratorTools Class
  *  This class is meant as a suite of tools
@@ -29,14 +29,27 @@ module.exports = class ByuiGeneratorTools {
     //return newestGenerator;
   }
 
-  onMasterCheck() {
+  async onMasterCheck() {
     //Check if we are on the master branch
-    this.context.log("in master check method");
-    // let tempFileName = (new Date()).getTime();
-    // proc.spawn(`git branch > ${tempFileName}.txt`);
-    // let branchInfoContents = fs.readFileSync(path.join(this.context.contextRoot, tempFileName));
-
-    return true; //or false
+    var that = this.context;
+    return new Promise(function (resolve, reject) {
+      simpleGit().checkIsRepo(function (err, response) {
+        if (err) reject(err);
+        //If we are not in a git repository, go ahead and error out.
+        if (!response) {
+          reject(new Error("The current directory is not a git repository"));
+        } else {
+          simpleGit().branch(function (err, branchSummary) {
+            if (err) reject(err);
+            //If the branches object is empty, set onMaster to false. Otherwise check to see if either the remote or local branch is master.
+            let onMaster = (branchSummary.branches === {}) ? (branchSummary.branches.master.current || branchSummary.branches['remotes/origin/master'].current) : false;
+            resolve(onMaster);
+          });
+        }
+      });
+    }).catch(e => {
+      that.log("Error/Warning when checking if we are on the master branch: ", e.message);
+    });
   }
 
   getInstalledGeneratorVersion() {

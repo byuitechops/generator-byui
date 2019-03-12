@@ -6,8 +6,8 @@ module.exports = class LifeCycle extends ByuiConfig {
 
   }
 
-  initializing() {
-
+  async initializing() {
+    await super.initializing();
   }
 
   async prompting() {

@@ -1,7 +1,43 @@
 // console.log((new Date()).getFullYear());
+const simpleGit = require('simple-git');
 
+async function master() {
+  await (async () => {
+    console.log("in IFFE");
+    await runCompleteSetUp();
+    console.log("after IFFE");
 
-console.log(require.resolve('./ideas.txt'));
+  })();
+
+  console.log("The next item");
+}
+
+async function runCompleteSetUp() {
+  console.log("in run complete setup function");
+  var answer = await onMasterCheck();
+  console.log("after onMaster await");
+  console.log(answer);
+}
+
+async function onMasterCheck() {
+  //Check if we are on the master branch
+  console.log("in master check");
+  return await new Promise(function (resolve, reject) {
+    simpleGit().branch(function (err, branchSummary) {
+      if (err) {
+        reject(err);
+      }
+      //Check local and remote
+      let onMaster = branchSummary.branches.master.current || branchSummary.branches['remotes/origin/master'].current;
+      console.log("in master check method", onMaster);
+      resolve(onMaster);
+    });
+  }).catch(e => {
+    console.log("Error when checking if we are on the master branch: ", e.message);
+  });
+
+}
+master();
 
 //Tried some other stuff:
 // process.env.VISUAL = "C:/Users/jedimasterryan/AppData/Local/Programs/Microsoft\ VS\ Code/Code.exe";

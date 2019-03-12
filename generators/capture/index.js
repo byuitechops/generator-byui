@@ -1,14 +1,12 @@
 const ByuiConfig = require('../ByuiConfig.js');
 
-module.exports = class LifeCycle extends ByuiConfig {
+module.exports = class Capture extends ByuiConfig {
   constructor(args, opts) {
     super(args, opts);
-
-
   }
 
-  initializing() {
-
+  async initializing() {
+    await super.initializing();
   }
 
   async prompting() {

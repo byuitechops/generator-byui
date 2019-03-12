@@ -16,8 +16,8 @@ module.exports = class LifeCycle extends ByuiConfig {
     this.options.byuiOptions.stackOfGeneratorsCalled.push('LifeCycle');
   }
 
-  initializing() {
-
+  async initializing() {
+    await super.initializing();
     var that = this;
     this.lifeCycleSubGenerators.forEach(function (subGenerator) {
       that.composeWith(require.resolve(`../${subGenerator}`), {

@@ -6,8 +6,8 @@ module.exports = class Boilerplate extends ByuiConfig {
 
   }
 
-  initializing() {
-
+  async initializing() {
+    await super.initializing();
   }
 
   async prompting() {

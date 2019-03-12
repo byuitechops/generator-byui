@@ -6,8 +6,8 @@ module.exports = class License extends ByuiConfig {
 
   }
 
-  initializing() {
-
+  async initializing() {
+    await super.initializing();
   }
 
   prompting() {
