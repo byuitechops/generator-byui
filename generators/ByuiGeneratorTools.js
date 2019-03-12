@@ -2,7 +2,6 @@ const fs = require('fs');
 const path = require('path');
 const chalk = require('chalk');
 const proc = require('child_process');
-const simpleGit = require('simple-git');
 /***************************************************
  *  ByuiGeneratorTools Class
  *  This class is meant as a suite of tools
@@ -23,13 +22,33 @@ module.exports = class ByuiGeneratorTools {
     //return directorFiles;
   }
 
-  getNewestGeneratorVersion() {
+  async getNewestGeneratorVersion() {
     //Makes api call for newest generator
+    const https = require('https');
+    var that = this.context;
+    var options = {
+      host: 'raw.githubusercontent.com',
+      path: '/byuitechops/generator-byui/master/package.json',
+    };
 
-    //return newestGenerator;
+    return new Promise(function (resolve, reject) {
+
+      var gitHubGeneratorPackageJson = "";
+      https.get(options, function (response) {
+        response.setEncoding('utf8');
+        response.on('data', (portion) => {
+          gitHubGeneratorPackageJson += portion;
+        });
+        response.on('end', () => {
+          resolve(JSON.parse(gitHubGeneratorPackageJson).version);
+        });
+      });
+    }).catch(e => that.log(e.message));
+
   }
 
   async onMasterCheck() {
+    const simpleGit = require('simple-git');
     //Check if we are on the master branch
     var that = this.context;
     return new Promise(function (resolve, reject) {
@@ -54,6 +73,8 @@ module.exports = class ByuiGeneratorTools {
 
   getInstalledGeneratorVersion() {
     //checks the developer's machine for the installed generator
+    // 'C:\Users\jedimasterryan\AppData\Roaming\npm\yo.cmd'
+    //TODO: NEed to figure out where the version number is for global installs.
 
   }
 

@@ -12,14 +12,16 @@ module.exports = async function runCompleteSetUp() {
 
   var that = this;
   var onMaster = await that.byuiGeneratorTools.onMasterCheck();
-
+  var newestGeneratorVersion = await that.byuiGeneratorTools.getNewestGeneratorVersion();
+  var installedGeneratorVersion = await that.byuiGeneratorTools.getInstalledGeneratorVersion();
+  that.log('newest: ', newestGeneratorVersion);
+  that.log('current: ', )
   //1. Collect Data
   that.configs = {
     onMaster: onMaster,
     directoryFiles: that.byuiGeneratorTools.getDirectoryFiles(),
-    newestGeneratorVersion: that.byuiGeneratorTools.getNewestGeneratorVersion(),
-    installedGeneratorVersion: that.byuiGeneratorTools.getInstalledGeneratorVersion()
-
+    newestGeneratorVersion: newestGeneratorVersion,
+    installedGeneratorVersion: installedGeneratorVersion
   };
 
   //that line is SO important.  If it is not in place, then a generator that composes with other
