@@ -1,5 +1,5 @@
 const moment = require('moment');
-
+const chalk = require('chalk');
 /***************************************************
  *  runCompleteSetUp
  *  that function is a member function for the
@@ -36,10 +36,10 @@ module.exports = async function runCompleteSetUp() {
       generatorVersion: that.generatorVersion,
     }
   };
-
   //2. Perform Checks and Report Findings
   if (that.configs.onMaster) {
     //Warn the user
+    that.log(chalk.yellowBright("WARNING: YOU ARE ON MASTER BRANCH!!"));
   }
   if (that.configs.newestGeneratorVersion !== that.configs.installedGeneratorVersion) {
     //Give a message
