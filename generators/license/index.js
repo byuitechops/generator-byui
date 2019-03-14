@@ -1,5 +1,6 @@
 const ByuiConfig = require('../ByuiConfig.js');
 const https = require('https');
+const path = require('path');
 module.exports = class License extends ByuiConfig {
   constructor(args, opts) {
     super(args, opts);
@@ -20,13 +21,14 @@ module.exports = class License extends ByuiConfig {
     if (this.options.byuiOptions.update) {
       this.byuiGeneratorTools.appendOldToCurrentFile(this.filenames.license);
 
+
       var that = this;
       var myObject = "";
       var options = {
         host: 'api.github.com',
-        path: '/repos/byuitechops/generator-byui-tech-ops',
+        path: `/repos/byuitechops/${path.basename(this.contextRoot)}`,
         headers: {
-          'User-Agent': 'generator-byui-tech-ops'
+          'User-Agent': 'generator-byui'
         }
       }
       this.yearGitHubRepoCreated = await new Promise(function (resolve, reject) {
