@@ -5,7 +5,6 @@ const chalk = require('chalk');
 module.exports = class PackageJson extends ByuiConfig {
   constructor(args, opts) {
     super(args, opts);
-
   }
 
   //Helper functions

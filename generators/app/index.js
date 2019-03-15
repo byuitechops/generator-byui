@@ -11,14 +11,15 @@ const subGeneratorsToRun = [
 module.exports = class SetUp extends ByuiConfig {
   constructor(args, opts) {
     super(args, opts);
+  }
 
+  async initializing() {
+    await super.initializing();
     this.subGeneratorsToRun = subGeneratorsToRun;
     //Must push the name of the generator onto this list, so sub generators, know they have been
     //called from another generator
     this.options.byuiOptions.stackOfGeneratorsCalled.push('SetUp');
-  }
 
-  initializing() {
     var that = this;
     this.subGeneratorsToRun.forEach(function (subGenerator) {
       that.composeWith(require.resolve(`../${subGenerator}`), {

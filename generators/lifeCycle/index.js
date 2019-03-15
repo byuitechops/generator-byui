@@ -10,14 +10,14 @@ module.exports = class LifeCycle extends ByuiConfig {
   constructor(args, opts) {
     super(args, opts);
 
-    this.lifeCycleSubGenerators = lifeCycleSubGenerators;
-    //Must push the name of the generator onto this list, so subgenerators, know they have been
-    //called from another generator
-    this.options.byuiOptions.stackOfGeneratorsCalled.push('LifeCycle');
   }
 
   async initializing() {
     await super.initializing();
+    this.lifeCycleSubGenerators = lifeCycleSubGenerators;
+    //Must push the name of the generator onto this list, so subgenerators, know they have been
+    //called from another generator
+    this.options.byuiOptions.stackOfGeneratorsCalled.push('LifeCycle');
     var that = this;
     this.lifeCycleSubGenerators.forEach(function (subGenerator) {
       that.composeWith(require.resolve(`../${subGenerator}`), {

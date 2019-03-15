@@ -14,8 +14,8 @@ module.exports = async function runCompleteSetUp() {
   var onMaster = await that.byuiGeneratorTools.onMasterCheck();
   var newestGeneratorVersion = await that.byuiGeneratorTools.getNewestGeneratorVersion();
   var installedGeneratorVersion = await that.byuiGeneratorTools.getInstalledGeneratorVersion();
-  that.log('newest: ', newestGeneratorVersion);
-  that.log('current: ', )
+  // that.log('newest: ', newestGeneratorVersion);
+  // that.log('current: ', )
   //1. Collect Data
   that.configs = {
     onMaster: onMaster,
