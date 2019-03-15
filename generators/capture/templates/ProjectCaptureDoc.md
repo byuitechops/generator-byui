@@ -3,7 +3,6 @@
 #### *Stakeholder(s): <%= stakeholders %>*
 #### *Date: <%= timeCreated %>*
 
-
 ## Background
 
 <!-- 
@@ -52,6 +51,8 @@ Don't Example 2:
 
 # Requirements
 
+### General Requirements
+
 ### Input Requirements
 
 #### Source of Inputs
@@ -81,8 +82,6 @@ Don't Example 2:
 
 <!-- CLI with Flags, CLI With Prompt, Web Page, Server, Library, etc -->
 
-####
-
 <!-- What are the flags, what are Major Questions, Images of UX/UI Design. -->
 
 -----
@@ -103,5 +102,5 @@ Don't Example 2:
 
 -----
 
-#### *Approved By:*
+#### *Approved By:* 
 #### *Approval Date:*
