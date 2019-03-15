@@ -1,56 +1,32 @@
 # Key Components Doc for <%= projectName %>
+#### *Author: <%= author %>*
+#### *Date: <%= timeCreated %>*
+  
+## Magic Box Chart
+<!-- Think through the process as much as makes sense, and then create a magic box chart with the whiteboard and place it here. -->
 
-Author Name: 
+## Explanation of Design
+<!-- Add explanation of the Magic Boxes image above. Answers to the prompts below may also be appropriate to include here. -->
 
-## 1. Basic Backlog (You may include a WBS image if you choose)
+### Used Libraries
 
-For each work item/function/smallest piece of your project that needs to be accomplished, *create an entry in the key components doc* of the form:
+## Things to Consider Before Getting Project Approved
+- Are there any approved libraries that I can use? [Link to Approved Library List]
+- Are there design patterns that will help?  [Link to Design Patterns]
+- Can I design it so that it is a general tool instead of a specific solution?
+- How can it be easily expanded?
+- What does the minimum viable product look like?
 
-**Work item/function that needs to be done** 
-- How will that be accomplished 
-- Is there a library that accomplishes this task (First check the approved Library List) 
-- What skills are needed to accomplish this task.
-
-or said more concisely:
-
-**What** 
-- How
-- Library
-- Skill(s)
-
-Example:
-
-**Collect information from Existing Docs**
-- HOW: First check to see if docs with the name "README.md" or "PROJECTINFO.md" exist. If they do exist, read them in.
-- LIBRARY: File System (fs)
-- SKILLS: Know how to read files using fs.
-
------
-
-## 2. Library List
-Bullet list of all libraries planning to use
-
-Example:
-
-- D3-DSV library 
-- Promises
-- C# Classes
-- FS Library
------
-
-## 3. Prototype List
-Bullet list of all skills that are not yet developed and a corresponding description of a prototype. The prototype is used to help develop that skill.
-
-Example:
-
-- D3-DSV library
-    - Use the D3-DSV library to convert a simple JSON with keys: "Name", "Favorite Smash Bros Character", "Favorite Color", "Favorite Coding Language" into a CSV file.
-- Promises
-    - Create a program that reads in a file and returns a promise when the file read has completed.
+## Prep for Learning Phase
+- What do I need to learn
+- How will I learn it
+- What will I do to learn it (prototypes/tutorials/research time limit?)
+- What is the definition of done for my learning process
+- How do I measure the progress of learning
+- Is there a deliverable that can be created during the learning process?
 
 -----
 
-## 4. Design Chart
-
-Embed the photo of your design chart
+#### *Approved By:* 
+#### *Approval Date:*
 
