@@ -46,8 +46,6 @@ module.exports = class ByuiConfig extends Generator {
     this.filenames = require('./filenames.js');
 
 
-
-
   }
 
   async initializing() {
