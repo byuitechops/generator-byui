@@ -17,11 +17,10 @@ function handleError (error) {
 }
 
 await function start (seed) {
-
- getInput()
-    .then    ( main )
-    .then    ( getOutput )
-    .catch   ( handleError );
+   getInput()
+      .then    ( main )
+      .then    ( getOutput )
+      .catch   ( handleError );
 }
 
 start()
