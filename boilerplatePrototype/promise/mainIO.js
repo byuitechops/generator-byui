@@ -1,6 +1,6 @@
 const { main } = require('./main.js');
 
-async function getInput(seed) {
+async function getInput() {
     var input;
     // How to get input, eg. from file, commandline, inquierer, etc.
     return input;
@@ -16,13 +16,12 @@ function handleError (error) {
     return;
 }
 
-module.exports = function mainIO (seed) {
-    let mainOutput;
-    mainOutput = Promise
-    .resolve ( seed )
-    .then    ( getInput )
+await function start (seed) {
+
+ getInput()
     .then    ( main )
     .then    ( getOutput )
     .catch   ( handleError );
-    return mainOutput;
 }
+
+start()
