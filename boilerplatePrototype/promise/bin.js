@@ -16,7 +16,7 @@ function handleError (error) {
     return;
 }
 
-await function start (seed) {
+async function start (seed) {
    getInput()
       .then    ( main )
       .then    ( getOutput )
