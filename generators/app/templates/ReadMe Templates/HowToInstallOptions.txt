@@ -8,7 +8,7 @@ Standard Install Instructions
 Install as a Global CLI App
 1. If this is a CLI Application that needs to be installed globally, run \
 `npm install -g git+<%= repositoryLink %>.git`
-1. *List the command and any arguements that need to be passed in while running the program*
+1. *List the command and any arguments that need to be passed in while running the program*
 1. *Any other important info to know about the program*
 
 Install as a Module Instructions

@@ -34,7 +34,7 @@ module.exports = function () {
   var authorQuestion = {
     name: 'author',
     type: 'input',
-    message: questionTools.messagePadEnd('Verify Author'),
+    message: questionTools.messagePadEnd('Author Name'),
     suffix: ':',
     validate: questionTools.noBlank,
     default: this.packageJson.author
