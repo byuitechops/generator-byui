@@ -1,4 +1,4 @@
-# Key Components Doc for (Enter Title of Project)
+# Key Components Doc for Generator BYUI
 
 Author Name: Ryan Gewondjan
 

@@ -19,6 +19,8 @@ module.exports = class ByuiGeneratorTools {
     //Searches the directory and returns an array of all files contained
     //in the current directory
 
+    // for auditing purposes, potentially not needed
+
     //return directorFiles;
   }
 
@@ -74,9 +76,10 @@ module.exports = class ByuiGeneratorTools {
 
   getInstalledGeneratorVersion() {
     //checks the developer's machine for the installed generator
-    // 'C:\Users\jedimasterryan\AppData\Roaming\npm\yo.cmd'
+    // 'C:\Users\${USER}\AppData\Roaming\npm\yo.cmd'
     //TODO: NEed to figure out where the version number is for global installs.
 
+    // (npm config get prefix) returns path to global npm
   }
 
 
@@ -104,7 +107,7 @@ module.exports = class ByuiGeneratorTools {
 
   audit() {
     //Check all the files, and report what files are needed and which ones we already have.
-
+    // GetDirectoryFiles() would come in to play here.
   }
 
 
