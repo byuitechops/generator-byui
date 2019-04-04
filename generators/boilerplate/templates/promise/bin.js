@@ -8,18 +8,19 @@ async function getInput() {
 
 async function getOutput (output) {
     // How to output data, eg. to csv, to json, to console, etc.
-    return;
+    return output;
 }
 
-async function handleError (error) {
+function handleError (error) {
     console.error(error)
     return;
 }
 
-(async function () {
-    Promise
-    .resolve (getInput)
-    .then    (main)
-    .then    (getOutput)
-    .catch   (handleError);
-})();
+async function start (seed) {
+   getInput()
+      .then    ( main )
+      .then    ( getOutput )
+      .catch   ( handleError );
+}
+
+start()
