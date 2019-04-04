@@ -3,6 +3,7 @@ module.exports = {
   license: "LICENSE",
   projectCapture: "ProjectCaptureDoc.md",
   keyComponents: "KeyComponentsDoc.md",
+  gitIgnore: ".gitignore",
 
   testJs: 'test.js',
   mainJs: 'main.js',
