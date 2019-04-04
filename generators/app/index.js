@@ -4,6 +4,7 @@ const subGeneratorsToRun = [
   'readme',
   'packageJson',
   'license',
+  'gitignore',
   'boilerplate',
   'lifeCycle',
 ];
