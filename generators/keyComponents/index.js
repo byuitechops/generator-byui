@@ -1,6 +1,6 @@
 const ByuiConfig = require('../ByuiConfig.js');
 
-module.exports = class LifeCycle extends ByuiConfig {
+module.exports = class KeyComponents extends ByuiConfig {
   constructor(args, opts) {
     super(args, opts);
 
