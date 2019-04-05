@@ -35,12 +35,22 @@ var stakeholdersQuestion = {
   validate: questionTools.noBlank,
 };
 
+// ---------- RELEASE/VERSION QUESTION ----------
+var branchQuestion = {
+  name: 'branch',
+  type: 'list',
+  message: questionTools.messagePadEnd('What branch is being merged'),
+  suffix: ':'
+};
+// ----------------------------------------------
+
 
 var questionBank = {
   projectName: nameOfProjectQuestion,
   codeTemplate: codeTemplateQuestion,
   author: authorQuestion,
   stakeholders: stakeholdersQuestion,
+  branch: branchQuestion,
 
 }
 

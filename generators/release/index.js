@@ -1,71 +1,48 @@
 const ByuiConfig = require('../ByuiConfig.js');
+const simpleGit = require('simple-git');
 
 module.exports = class Release extends ByuiConfig {
-    constructor(args, opts) {
-        super(args, opts);
+  constructor(args, opts) {
+    super(args, opts);
+  }
+
+  async initializing() {
+    await super.initializing();
+    try {
+      let branches;
+      return simpleGit().branch((err, branchSummary) => {
+        if (err) throw new Error("Error identifying branches of current repository.");
+        branches = Object.keys(branchSummary.branches);
+
+        branches = branches.filter(branch => !branch.includes('/'));
+        this.branches = branches;
+      });
+    } catch (err) {
+      this.log(err.message);
     }
+  }
 
-    async initializing() {
-        await super.initializing();
-    }
-
-    async prompting() {
-        var that = this;
-        const simpleGit = require('simple-git');
-        return new Promise((resolve, reject) => {
-            let branches;
-            await simpleGit().branch((err, branchSummary) => {
-                if (err) throw new Error(err.message);
-                branches = Object.keys(branchSummary.branches);
-            });
-            branches = branches.filter(branch => !branch.includes('/'));
-            resolve(branches);
-        }).then(branches => {
-            var questionsToAsk = [{
-                name: 'branch',
-                type: 'input',
-                message: questionTools.messagePadEnd('What branch is being merged'),
-                suffix: ':',
-                validate: value => branches.includes(value) ? true : "That branch doesn't exist"
-            }];
-            that.prompt(questionsToAsk).then(answers => {
-                await simpleGit()
-                    .push('origin', answers.branch)
-                    .checkout('master', (err) => { if (err) throw new Error(err.message) })
-                    .mergeFromTo(answers.branch, 'master', (err) => { if (err) throw new Error(err.message) })
-                    .push('origin', 'master');
-            });
-        }).catch(e => that.log("Error releasing."));
-    }
-
-    //async prompting() {
-    //  const simpleGit = require('simple-git');
-    // Find all branches of current repo
-    /* THIS IS A SINGLE FUNCTION
-    let branches;
-    await simpleGit().branch((err, branchSummary) => {
-        if (err) throw new Error(err.message);
-        branches = Object.keys(summary.branches);
-    });
-    branches = branches.filter(branch => !branch.includes('/'));
-    */
-
-    // Prompt user for branch to merge to master
-    /* THIS IS A SINGLE FUNCTION
-    var questionsToAsk = [{
-        name: 'branch',
-        type: 'input',
-        message: questionTools.messagePadEnd('What branch is being merged'),
-        suffix: ':',
-        validate: value => branches.includes(value) ? true : "That branch doesn't exist"
-    }];
+  async prompting() {
+    var questionsToAsk = [this.questions.branch];
+    questionsToAsk[0].choices = this.branches;
     this.prompt(questionsToAsk).then(answers => {
-        await simpleGit()
-            .push('origin', answers.branch)
-            .checkout('master', (err) => { if (err) throw new Error(err.message) })
-            .mergeFromTo(answers.branch, 'master', (err) => { if (err) throw new Error(err.message) })
-            .push('origin', 'master');
-    });
-    */
-    //}
+      this.branchToMerge = answers.branch;
+    }).catch(e => this.log("Error prompting for branch."));
+  }
+
+  async release() {
+    try {
+      return simpleGit()
+        .push('origin', this.branchToMerge)
+        .checkout('master', (err) => {
+          if (err) throw new Error("Error checking out master branch")
+        })
+        .mergeFromTo(this.branchToMerge, 'master', (err) => {
+          if (err) throw new Error(`Error merging ${this.branchToMerge} to master.`)
+        })
+        .push('origin', 'master');
+    } catch (err) {
+      this.log("Error releasing:", err.message);
+    }
+  }
 };
