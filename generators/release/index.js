@@ -13,6 +13,7 @@ module.exports = class Release extends ByuiConfig {
         return new Promise(function (resolve, reject) {
             simpleGit().checkIsRepo(function (err, response) {
                 if (err) reject(err);
+                var found = false;
                 //If we are not in a git repository, go ahead and error out.
                 if (!response) {
                     reject(new Error("The current directory is not a git repository."));
@@ -21,15 +22,21 @@ module.exports = class Release extends ByuiConfig {
                         if (err) reject(err);
                         //If the branches object is empty then throw.
                         if (Object.keys(branchSummary.branches).length === 0) reject(new Error("The current directory contains no branches."));
+
+                        // console.log(branchSummary);
+
                         //If on master then throw.
                         if (branchSummary.branches['remotes/origin/master'].current || branchSummary.branches.master.current) reject(new Error("Currently checked out on master."));
                         //Find current branch checked out.
                         Object.keys(branchSummary.branches).forEach(branchName => {
-                            if (branchSummary.branches[branchName] && branchName !== "master") {
+                            if (branchSummary.branches[branchName].current && branchName !== 'master' && branchName !== 'remotes/origin/master') {
                                 that.branchToMerge = branchSummary.branches[branchName];
+                                found = true;
                             }
                         });
-                        console.log(that.branch);
+
+                        // console.log(that.branchToMerge);
+                        resolve(found);
                     });
                 }
             });
@@ -39,18 +46,22 @@ module.exports = class Release extends ByuiConfig {
     }
 
     async release() {
-        try {
-            return simpleGit()
-                .push('origin', this.branchToMerge)
+        var that = this;
+        return new Promise(function (resolve, reject) {
+            simpleGit()
+                .add('./*')
+                .commit('New version release')
+                .push('origin', that.branchToMerge.name)
                 .checkout('master', (err) => {
-                    if (err) throw new Error("Error checking out master branch")
+                    if (err) reject(new Error("Error checking out master branch"));
                 })
-                .mergeFromTo(this.branchToMerge, 'master', (err) => {
-                    if (err) throw new Error(`Error merging ${this.branchToMerge} to master.`)
+                .mergeFromTo(that.branchToMerge.name, 'master', (err) => {
+                    if (err) reject(new Error(`Error merging ${that.branchToMerge.name} to master.`));
                 })
                 .push('origin', 'master');
-        } catch (err) {
-            this.log("Error releasing:", err.message);
-        }
+            resolve();
+        }).catch(e => {
+            that.log("Error releasing: ", e.message);
+        });
     }
 };
