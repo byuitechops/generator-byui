@@ -60,8 +60,9 @@ module.exports = class Release extends ByuiConfig {
                 })
                 .push('origin', 'master');
             resolve();
+            console.log("Switched to branch 'master'");
         }).catch(e => {
-            that.log("Error releasing: ", e.message);
+            that.log("Error releasing new version: ", e.message);
         });
     }
 };
