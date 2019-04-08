@@ -62,7 +62,6 @@ module.exports = class ByuiGeneratorTools {
         } else {
           simpleGit().branch(function (err, branchSummary) {
             if (err) reject(err);
-            console.log(branchSummary.branches);
             //If the branches object is empty, set onMaster to false. Otherwise check to see if either the remote or local branch is master.
             let onMaster = (Object.keys(branchSummary.branches).length === 0) ? false : (branchSummary.branches['remotes/origin/master'].current || branchSummary.branches.master.current);
             resolve(onMaster);
